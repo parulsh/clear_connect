@@ -1,0 +1,25 @@
+<h2><u>Registered Companies</u></h2>
+<table class="table">
+  <tr class="border">
+    <th>Name</th>
+    <th>Host</th>
+    <th>Package</th>
+    <th>Option</th>
+  </tr>
+  <% @companies.each do |company| %>
+    <tr class="border">
+      <td><%= company.name %></td>
+      <td><%=  company.host %></td>
+      <td><%=  company.package %></td>
+      <td><%= link_to "View",company_path(company) %>/
+          <%= link_to "Edit",edit_company_path(company) %>/
+          <%= link_to "Delete", company_path(company),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add New Company",new_company_path %><br>
+<%= link_to "Back", root_path %>

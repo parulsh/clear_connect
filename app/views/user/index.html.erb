@@ -1,0 +1,24 @@
+<b><span style="font-size: 24px ;"><u>Registered Users</u></span></b>
+
+<%= render "new_form" %>
+
+
+<br><br>
+<table class="table">
+  <tr class="border">
+    <th>Name</th>
+    <th>Email</th>
+    <th>Option</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr class="border">
+      <td><%= user.user_name %></td>
+      <td><%=  user.email %></td>
+      <td><%= link_to "View",user_path(user) %>/<%= link_to "Edit",edit_user_path(user) %>/
+          <%= link_to "Delete", user_path(user),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
