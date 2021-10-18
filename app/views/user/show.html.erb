@@ -1,14 +1,12 @@
-<div class="row">
-  <div class="col-4">
-    <h1><u>User Details</u></h1>
-    <b>Full Name: </b><span><%= @user.full_name%></span><br>
+<div class="card mt-4">
+  <div class="card-header">
+    User Details
+  </div>
+  <div class="card-body">
     <b>User Name: </b><span><%= @user.user_name%></span><br>
     <b>Email: </b><span><%= @user.email%></span><br>
-    <%byebug%>
-    <b>Company Name: </b><span><%= @user.company.name%></span><br><br>
+    <b>Company Name: </b><span><%= @user.company_name%></span><br><br>
 
-    <%= link_to "Back", user_index_path %>   
+    <%= link_to "Back", user_index_path %>  
   </div>
-  <div class="col-4"></div>
-  <div class="col-4"></div>
 </div>

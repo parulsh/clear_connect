@@ -1,0 +1,19 @@
+<div class="card-body">
+  <%= form_with model: @user, url: url_path do |f| %>
+    <div class="form-group">
+      <%= f.text_field :user_name, autofocus: true, placeholder: 'User Name', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.text_field :company_name, placeholder: 'Company Name', class: 'form-control' %>
+    </div><br>
+
+    <div class="actions">
+      <%= f.submit "Update",class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

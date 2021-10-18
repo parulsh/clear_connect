@@ -4,7 +4,7 @@
   </div>
   <div class='col-md-6'>
     <div class="float-end">
-      <%= link_to 'Companies', new_company_path , class: 'btn btn-primary'%>
+      <%= link_to 'Add Company', new_company_path , class: 'btn btn-primary'%>
     </div>
   </div>
   </br>
@@ -12,45 +12,41 @@
   </br>
   <div class="table-responsive col-md-12">
     <table id="example" class="table table-striped" style="width:100%">
-    <thead>
+      <thead>
         <tr>
           <th>Name</th>
           <th>Host</th>
           <th>Package</th>
-          <th>Option</th>
+          <th></th>
         </tr>
-    </thead>
-    <tbody>
-      <% @companies.each do |company| %>
-        <tr class="">
-          <td><%= company.name %></td>
-          <td><%=  company.host %></td>
-          <td><%=  company.package %></td>
-          <td><%= link_to "<i class='far fa-eye'></i>".html_safe,company_path(company) %> <%= link_to "<i class='far fa-edit'></i>".html_safe,edit_company_path(company) %> <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, company_path(company),
-                      method: :delete,
-                      data: { confirm: "Are you sure?" } %>
-          </td>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr class="">
+            <td><%= company.name %></td>
+            <td><%=  company.host %></td>
+            <td><%=  company.package %></td>
+            <td><%= link_to "<i class='far fa-eye'></i>".html_safe,company_path(company) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-edit'></i>".html_safe,edit_company_path(company) %>&nbsp;&nbsp; <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, company_path(company),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } %>
+            </td>
+          </tr>
+        <% end %>  
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Host</th>
+          <th>Package</th>
+          <th></th>
         </tr>
-      <% end %>
-       
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Host</th>
-        <th>Package</th>
-        <th>Option</th>
-      </tr>
-    </tfoot>
-</table>
+      </tfoot>
+    </table>
   </div>
 </div>
-
-
-
 
 <script>
   $(document).ready(function() {
     $('#example').DataTable();
   } );
- </script> 
+</script> 
