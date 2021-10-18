@@ -1,26 +1,27 @@
-<div class="row">
-  <div class="col-4"></div>
-  <div class="col-4">
-    <h2>Change your password</h2>
+<div class="col-sm-6">
+  <div class="card ">
+    <div class="card-header">
+      Change your password
+    </div>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <%= f.hidden_field :reset_password_token %>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
 
-      <div class="form-group">
-        <%= f.password_field :password, placeholder: 'Password' autofocus: true, autocomplete: "new-password",class: 'form-control' %>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, placeholder: 'Confirm-Password', autocomplete: "new-password",class: 'form-control' %>
-      </div>
-      <br>
-      <div class="actions">
-        <%= f.submit "Change my password",class: 'btn btn-primary' %>
-      </div>
-    <% end %>
+        <div class="form-group">
+          <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+        </div><br>
 
-    <%= link_to "Login", new_session_path(resource_name), class: 'fw-bold' %>
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, placeholder: 'Confirm-Password', class: 'form-control' %>
+        </div><br>
+
+        <div class="actions">
+          <%= f.submit "Change password", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+      <%#= link_to "Login", new_session_path(resource_name), class: 'fw-bold' %>
+    </div>
   </div>
-  <div class="col-4"></div>
 </div>

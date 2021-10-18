@@ -1,0 +1,20 @@
+<div class="card-body">
+  <%= form_with model: company do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: 'Company Name', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.text_field :host, placeholder: 'Host', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <label class="form-label">Package</label>
+      <%= f.select :package, Company.packages.keys, {}, {class: "form-control"} %>
+    </div><br>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

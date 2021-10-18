@@ -14,8 +14,7 @@
     <tr class="border">
       <td><%= user.user_name %></td>
       <td><%=  user.email %></td>
-      <td><%= link_to "View",user_path(user) %>/<%= link_to "Edit",edit_user_path(user) %>/
-          <%= link_to "Delete", user_path(user),
+      <td><%= link_to "<i class='far fa-eye'></i>".html_safe,user_path(user) %>  <%= link_to "<i class='far fa-edit'></i>".html_safe,edit_user_path(user) %>  <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, user_path(user),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
       </td>

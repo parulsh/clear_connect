@@ -1,20 +1,7 @@
-<h2><u>Add New Company</u></h2>
-<%= form_with model: @company, url: companies_path do |form| %>
-  
-  <div class="form-group">
-    <%= form.text_field :name, placeholder: 'Company Name', class: 'form-control' %>
+</br>
+<div class="col-sm-6">
+  <div class="card">
+    <div class="card-header">Add Company</div>
+    <%= render "form", company: @company %>
   </div>
-  <br>
-  <div class="form-group">
-    <%= form.text_field :host, placeholder: 'Host', class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group">
-    Package: <%= form.select :package, Company.packages.keys, class: 'form-control' %>
-  </div>
-
-  <br>
-  <div class="actions">
-    <%= form.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
