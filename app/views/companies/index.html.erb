@@ -4,7 +4,7 @@
   </div>
   <div class='col-md-6'>
     <div class="float-end">
-      <%= link_to 'Add Company', new_company_path , class: 'btn btn-primary'%>
+      <%= link_to ' + Add Company ', new_company_path , class: 'btn btn-primary'%>
     </div>
   </div>
   </br>
@@ -14,33 +14,32 @@
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Company name</th>
           <th>Host</th>
-          <th>Package</th>
+          <th>Subscription plan</th>
+          <th>No. of users</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <% @companies.each do |company| %>
-          <tr class="">
+          <tr>
             <td><%= company.name %></td>
             <td><%=  company.host %></td>
             <td><%=  company.package %></td>
-            <td><%= link_to "<i class='far fa-eye'></i>".html_safe,company_path(company) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-edit'></i>".html_safe,edit_company_path(company) %>&nbsp;&nbsp; <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, company_path(company),
-                        method: :delete,
-                        data: { confirm: "Are you sure?" } %>
-            </td>
+            <td></td>
+            <td><%#= link_to "<i class='far fa-eye'></i>".html_safe,company_path(company) %><%= link_to "<i class='far fa-edit'></i>".html_safe,edit_company_path(company) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, company_path(company), method: :delete, data: { confirm: "Are you sure?" } %></td>
           </tr>
         <% end %>  
       </tbody>
-      <tfoot>
+      <!-- <tfoot>
         <tr>
           <th>Name</th>
           <th>Host</th>
           <th>Package</th>
           <th></th>
         </tr>
-      </tfoot>
+      </tfoot> -->
     </table>
   </div>
 </div>

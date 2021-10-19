@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
 
-  enum package: [:silver, :gold, :diamond]
+  enum package: [:bronze, :silver, :gold, :platinum]
 
   validates :name, :host, presence: true
 end

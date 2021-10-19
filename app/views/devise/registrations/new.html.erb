@@ -3,6 +3,8 @@
     <div class="card-header">
       Sign up
     </div>
+    <!-- <center>Create an account to schedule and manage your meetings.</center> -->
+
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -32,10 +34,10 @@
       </div><br>
 
       <div class="actions">
-        <%= f.submit "Sign up",class: 'btn btn-primary' %>
+        <%= f.submit "Create your account",class: 'btn btn-primary' %>
       </div>
     <% end %><br>
-    <p class="mb-0">Already have an account? <%= link_to "Login", new_session_path(resource_name), class: 'fw-bold' %>
+    <p class="mb-0">Have an account? <%= link_to "Sign In", new_session_path(resource_name), class: 'fw-bold' %>
         </p>
     </div>
   </div>

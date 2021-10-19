@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :user
   
+  resources :device_packs
+  resources :experience_packs
   resources :companies
 end

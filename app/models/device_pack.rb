@@ -1,0 +1,2 @@
+class DevicePack < ApplicationRecord
+end

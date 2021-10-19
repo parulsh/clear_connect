@@ -1,0 +1,45 @@
+<div class= 'row mt-4'>
+  <div class='col-md-6'>
+    <h3>Devices</h3>
+  </div>
+  <div class='col-md-6'>
+    <div class="float-end">
+      <%= link_to ' + Add device pack ', new_device_pack_path , class: 'btn btn-primary'%>
+    </div>
+  </div>
+  </br>
+  </br>
+  </br>
+  <div class="table-responsive col-md-12">
+    <table id="example" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th>Device name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @device_packs.each do |device| %>
+          <tr>
+            <td><%= device.name %></td>
+            <td><%#= link_to "<i class='far fa-eye'></i>".html_safe,company_path(company) %><%= link_to "<i class='far fa-edit'></i>".html_safe,edit_device_pack_path(device) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, device_pack_path(device), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          </tr>
+        <% end %>  
+      </tbody>
+      <!-- <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Host</th>
+          <th>Package</th>
+          <th></th>
+        </tr>
+      </tfoot> -->
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+  } );
+</script> 

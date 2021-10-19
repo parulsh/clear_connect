@@ -1,0 +1,11 @@
+<div class="card-body">
+  <%= form_with model: @device_pack do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: 'Experience Name', class: 'form-control' %>
+    </div><br>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

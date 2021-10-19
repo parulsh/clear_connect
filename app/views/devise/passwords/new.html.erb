@@ -1,8 +1,9 @@
 <div class="col-sm-6">
   <div class="card">
     <div class="card-header">
-      Forgot password?
+      Forgot password
     </div>
+    <!-- <center>Please enter your registered email and we'll send you a link to reset your password</center> -->
 
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -15,8 +16,8 @@
         <div class="actions">
           <%= f.submit "Send password instructions",class: 'btn btn-primary' %>
         </div>
-      <% end %>
-      <%#= link_to "Login", new_session_path(resource_name), class: 'fw-bold' %>
+      <% end %><br>
+      <p class="mb-0">Wait, I remember my password. <%= link_to "Sign In", new_session_path(resource_name), class: 'fw-bold' %>
     </div>
   </div>
 </div>
