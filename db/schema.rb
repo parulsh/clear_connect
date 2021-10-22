@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_074135) do
+ActiveRecord::Schema.define(version: 2021_10_21_104039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,42 @@ ActiveRecord::Schema.define(version: 2021_10_19_074135) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "meeting_experience_packs", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.integer "experience_pack_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "topic"
+    t.string "password"
+    t.datetime "start_time"
+    t.time "duration"
+    t.string "time_zone"
+    t.integer "user_id"
+    t.string "status"
+    t.integer "device_pack_id"
+    t.text "attendees", default: [], array: true
+    t.string "alternate_host"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer "resource_owner_id"
+    t.integer "application_id"
+    t.string "token", null: false
+    t.string "refresh_token"
+    t.integer "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.string "scopes"
+    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
+    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
+    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -68,4 +104,5 @@ ActiveRecord::Schema.define(version: 2021_10_19_074135) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
 end

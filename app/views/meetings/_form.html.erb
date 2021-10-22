@@ -1,0 +1,49 @@
+<div class="card-body">
+  <%= form_with model: @meeting, local: true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :topic, placeholder: 'Meeting Topic *', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.text_field :password, placeholder: 'Meeting Password *', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.datetime_field :start_time, as: :datetime_picker, placeholder: 'Date and Time', class: 'form-control' %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.select :duration, Meeting::DURATIONS, {prompt: 'Duration'}, {class: "form-control"}  %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { include_blank: 'Time Zone' }, { required: true, class: 'form-control' } %>
+    </div><br>
+
+    <div class="form-group">
+      <label class="form-label">VR Experiences: </label>&nbsp;&nbsp;&nbsp;
+      <% ExperiencePack.all.each do |exp| %>
+        <label>
+          <%= check_box_tag "meeting[experience_pack_ids][]", exp.id, class: 'form-control'%>
+          <%= exp.name %>
+        </label>
+      <% end %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.select :device_pack_id, DevicePack.all.map{|c| [c.name, c.id]}, {prompt: 'Select Device Pack'}, {class: "form-control"} %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.email_field :attendees, multiple: true, :placeholder => 'Seperate email addresses with a comma or semicolon', :class => 'form-control'  %>
+    </div><br>
+
+    <div class="form-group">
+      <%= f.text_field :alternate_host, placeholder: 'Alternate Host', class: 'form-control' %>
+    </div><br>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

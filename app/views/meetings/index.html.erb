@@ -1,0 +1,40 @@
+<div class= 'row mt-4'>
+  <div class='col-md-6'>
+    <h3>My Meetings</h3>
+  </div>
+  <div class='col-md-6'>
+    <div class="float-end">
+      <%= link_to ' + Schedule a Meeting', new_meeting_path , class: 'btn btn-primary'%>
+    </div>
+  </div>
+  </br>
+  </br>
+  </br>
+  <div>
+    <%= link_to 'Upcoming', meetings_path(value: 'upcoming'), class: 'link'%>&nbsp;&nbsp;&nbsp;<%= link_to 'Completed', meetings_path(value: 'completed'), class: 'link'%>
+    <hr>
+  </div>
+  <div>
+    <br>
+  </div>
+  <div class="table-responsive col-md-12">
+    <table id="example" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @meetings.each do |meet| %>
+          <tr>
+            <td><%= meet.start_time.strftime('%I:%M %p') %> - <%= (meet.start_time + meet.duration.strftime("%H").to_i.hour + meet.duration.strftime("%M").to_i.minute).strftime('%I:%M %p')%><br><%=  meet.start_time.strftime("%a, %b #{meet.start_time.day}") %></td>
+            <td><%= meet.topic %><br><%= meet.user.full_name%></td>
+            <td><%= link_to "<i class='far fa-edit'></i>".html_safe,edit_meeting_path(meet) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, meeting_path(meet), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
+  </div>
+</div>
