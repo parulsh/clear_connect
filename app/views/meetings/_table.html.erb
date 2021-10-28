@@ -1,0 +1,19 @@
+ <% @meetings.each do |meet| %>
+  <tr>
+    <td>
+      <%= meet.start_time.strftime('%I:%M %p') %> - <%= (meet.start_time + meet.duration.strftime("%H").to_i.hour + meet.duration.strftime("%M").to_i.minute).strftime('%I:%M %p')%>
+      <br>
+      <%=  meet.start_time.strftime("%a, %b #{meet.start_time.day}") %>
+    </td>
+    <td>
+      <%= meet.topic %>
+      <br>
+      <%= meet.user.full_name%>
+    </td>
+    <td>
+      <%= link_to "<i class='far fa-edit'></i>".html_safe,edit_meeting_path(meet) %>
+      &nbsp;&nbsp; 
+      <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, meeting_path(meet), method: :delete, data: { confirm: "Are you sure?" } %>
+    </td>
+  </tr>
+<% end %>  

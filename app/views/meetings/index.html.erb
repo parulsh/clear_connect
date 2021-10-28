@@ -1,23 +1,42 @@
 <div class= 'row mt-4'>
   <div class='col-md-6'>
-    <h3>My Meetings</h3>
+    <h3 class="fs-2">My Meetings</h3>
   </div>
+
   <div class='col-md-6'>
     <div class="float-end">
       <%= link_to ' + Schedule a Meeting', new_meeting_path , class: 'btn btn-primary'%>
     </div>
   </div>
-  </br>
-  </br>
-  </br>
+
+  </br></br></br>
+
   <div>
-    <%= link_to 'Upcoming', meetings_path(value: 'upcoming'), class: 'link'%>&nbsp;&nbsp;&nbsp;<%= link_to 'Completed', meetings_path(value: 'completed'), class: 'link'%>
+    <%= link_to 'Upcoming', meetings_path, class: 'link-secondary fs-4 upcoming', style: 'text-decoration: none'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to 'Completed', meetings_path(type: 'completed'), class: 'link-secondary fs-4 completed', style: 'text-decoration: none'%>
+    <div class="float-end">
+      <i class="far fa-calendar-alt"></i>
+    </div>
     <hr>
   </div>
-  <div>
-    <br>
+
+  <div class="dropdown">
+    <button class="btn dropdown-toggle border-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>&nbsp;&nbsp;My Meetings</button>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>&nbsp;&nbsp;&nbsp;
+
+    <input type="button" class="btn border-dark meeting_daterange" name="daterange" value="01/01/2030 - 31/01/2030" />
+    &nbsp;&nbsp;&nbsp;
+
+    <input type="checkbox" class="checkbox" id="meeting" name="meeting" value="Meeting"> Show earlier meetings
   </div>
-  <div class="table-responsive col-md-12">
+
+  <div class="table-responsive col-md-12 default_meetings">
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -26,15 +45,33 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
-        <% @meetings.each do |meet| %>
-          <tr>
-            <td><%= meet.start_time.strftime('%I:%M %p') %> - <%= (meet.start_time + meet.duration.strftime("%H").to_i.hour + meet.duration.strftime("%M").to_i.minute).strftime('%I:%M %p')%><br><%=  meet.start_time.strftime("%a, %b #{meet.start_time.day}") %></td>
-            <td><%= meet.topic %><br><%= meet.user.full_name%></td>
-            <td><%= link_to "<i class='far fa-edit'></i>".html_safe,edit_meeting_path(meet) %>&nbsp;&nbsp; <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, meeting_path(meet), method: :delete, data: { confirm: "Are you sure?" } %></td>
-          </tr>
-        <% end %>  
+      <tbody class= "meeting-table">
+        <%=render partial: 'table' %>
       </tbody>
     </table>
   </div>
+
+  <!-- <div class="table-responsive col-md-12 earlier_meetings" style="display: none;">
+    <%#= render "table", meetings: @meetings.earlier %>
+  </div> -->
 </div>
+
+<script>
+  $(function() {
+    $('.meeting_daterange').daterangepicker({
+      locale: {
+        format: 'DD/MM/YYYY'
+      }
+    },
+    function(start, end, label) {
+      var type_var = "<%= params[:type] %>"
+      $.ajax({
+        type: "GET",// GET in place of POST
+        contentType: "application/json; charset=utf-8",
+        url: "/meetings",
+        data : {start_date: start.format('YYYY-MM-DD'), end_date: end.format('YYYY-MM-DD'), type: type_var},
+        dataType: "script"
+      });
+    });
+  });
+</script>

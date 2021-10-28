@@ -8,6 +8,7 @@ class Meeting < ApplicationRecord
   has_many :meeting_experience_packs
   has_many :experience_packs, through: :meeting_experience_packs
 
-  scope :completed, -> { where(status: "finished") }
-  scope :upcoming, -> { where("start_time >= ?", Date.today)} 
+  scope :completed, ->(user) { where("start_time < ? and user_id = ?", Date.today, user.id) }
+  scope :upcoming, ->(user) { where("start_time >= ? and user_id = ?", Time.now, user.id)} 
+  scope :earlier, -> { where("start_time < ?", Date.today) }
 end
