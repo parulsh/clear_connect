@@ -16,40 +16,46 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to 'Completed', meetings_path(type: 'completed'), class: 'link-secondary fs-4 completed', style: 'text-decoration: none'%>
     <div class="float-end">
-      <i class="far fa-calendar-alt"></i>
+      <%= link_to "<i class='fas fa-list'></i>".html_safe, meetings_path, class: 'link-secondary fs-4' %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to "<i class='far fa-calendar-alt'></i>".html_safe, meetings_path(type: 'calendar'), class: 'link-secondary fs-4' %>
     </div>
     <hr>
   </div>
+  <% if params[:type] == "calendar" %>
+    <div id="calendar"></div>
+  <% else %>
+    <div class="dropdown">
+      <button class="btn dropdown-toggle border-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>&nbsp;&nbsp;My Meetings</button>
 
-  <div class="dropdown">
-    <button class="btn dropdown-toggle border-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>&nbsp;&nbsp;My Meetings</button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>&nbsp;&nbsp;&nbsp;
 
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>&nbsp;&nbsp;&nbsp;
+      <input type="button" class="btn border-dark meeting_daterange" name="daterange" value="01/01/2030 - 31/01/2030" />
+      &nbsp;&nbsp;&nbsp;
 
-    <input type="button" class="btn border-dark meeting_daterange" name="daterange" value="01/01/2030 - 31/01/2030" />
-    &nbsp;&nbsp;&nbsp;
+      <input type="checkbox" class="checkbox" id="meeting" name="meeting" value="Meeting"> Show earlier meetings
+    </div>
 
-    <input type="checkbox" class="checkbox" id="meeting" name="meeting" value="Meeting"> Show earlier meetings
-  </div>
-
-  <div class="table-responsive col-md-12 default_meetings">
-    <table id="example" class="table table-striped" style="width:100%">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class= "meeting-table">
-        <%=render partial: 'table' %>
-      </tbody>
-    </table>
-  </div>
+    <div class="table-responsive col-md-12 default_meetings">
+      <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class= "meeting-table">
+          <%=render partial: 'table' %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  
 
   <!-- <div class="table-responsive col-md-12 earlier_meetings" style="display: none;">
     <%#= render "table", meetings: @meetings.earlier %>
@@ -74,4 +80,5 @@
       });
     });
   });
+  
 </script>
