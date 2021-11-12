@@ -1,0 +1,29 @@
+<div class="dropdown">
+  <button class="btn dropdown-toggle border-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-search"></i>&nbsp;&nbsp;My Meetings</button>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>&nbsp;&nbsp;&nbsp;
+
+  <input type="button" class="btn border-dark meeting_daterange" name="daterange" value="01/01/2030 - 31/01/2030" />
+  &nbsp;&nbsp;&nbsp;
+
+  <input type="checkbox" class="checkbox" id="meeting" name="meeting" value="Meeting"> Show earlier meetings
+</div>
+
+<div class="table-responsive col-md-12 default_meetings">
+  <table id="example" class="table table-striped" style="width:100%">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class= "meeting-table">
+      <%=render partial: 'table' %>
+    </tbody>
+  </table>
+</div>

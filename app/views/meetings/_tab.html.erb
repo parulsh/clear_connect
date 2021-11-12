@@ -1,0 +1,27 @@
+
+<% upcoming = params[:meeting_type] == 'upcomming' ? 'active' : '' %>
+<% complete = params[:meeting_type] == 'completed' ? 'active' : '' %>
+
+<% if (params[:view_type] == "calendar" && params[:meeting_type] == "completed") || (params[:view_type] == "calendar" && params[:meeting_type] == "upcomming") %>
+  <%= link_to 'Upcoming', meetings_path(meeting_type: 'upcomming', view_type: 'calendar'), class: "d-inline-block link-secondary fs-4 px-2 upcoming relative #{upcoming}", style: 'text-decoration: none'%>  
+  <%= link_to 'Completed', meetings_path(meeting_type: 'completed', view_type: 'calendar'), class: "link-secondary fs-4 px-2 completed d-inline-block mr-2 relative  #{complete}", style: 'text-decoration: none'%>
+<% else %>
+  <%= link_to 'Upcoming', meetings_path(meeting_type: 'upcomming'), class: "d-inline-block px-2 link-secondary fs-4 upcoming relative #{upcoming}", style: 'text-decoration: none'%>
+  <%= link_to 'Completed', meetings_path(meeting_type: 'completed'), class: "d-inline-block px-2  link-secondary fs-4 completed relative #{complete}", style: 'text-decoration: none'%>
+<% end %>
+
+
+
+<div class="float-end">
+  <% if params[:meeting_type] == "completed" || (params[:view_type] == "list" && params[:meeting_type] == "completed") || (params[:view_type] == "calendar" && params[:meeting_type] == "completed") %>
+    <%= link_to "<i class='fas fa-list'></i>".html_safe, meetings_path(view_type: 'list',meeting_type: 'completed'), class: "link-secondary fs-4" %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to "<i class='far fa-calendar-alt calendar-class'></i>".html_safe, meetings_path(view_type: 'calendar',meeting_type: 'completed'), class: "link-secondary fs-4" %>
+  <% else %>
+    <%= link_to "<i class='fas fa-list'></i>".html_safe, meetings_path(view_type: 'list', meeting_type: 'upcomming'), class: "link-secondary fs-4" %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to "<i class='far fa-calendar-alt calendar-class'></i>".html_safe, meetings_path(view_type: 'calendar', meeting_type: 'upcomming'), class: "link-secondary fs-4" %>
+  <% end %>
+</div>
+<hr>
+

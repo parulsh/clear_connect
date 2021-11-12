@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
-  def index 
-    if params[:type] == "completed"
+  def index
+    if params[:meeting_type] == "completed"
       @meetings = Meeting.completed(current_user)
       @meetings = @meetings.where(start_time: params[:start_date]..params[:end_date]) if request.xhr?
     else  
